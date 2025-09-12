@@ -1,0 +1,11 @@
+{
+    "extends": "@zrpc/typescript-config/base.json",
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@zrpc/core": ["../core/src"]
+        }
+    }
+  }

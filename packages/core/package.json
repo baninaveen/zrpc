@@ -1,0 +1,49 @@
+{
+  "name": "@zrpc/core",
+  "version": "0.1.1",
+  "private": false,
+  "description": "A type-safe gRPC framework for Node.js, built with Zod.",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "dev": "pnpm build --watch",
+    "lint": "eslint src/"
+  },
+  "keywords": [
+    "grpc",
+    "rpc",
+    "zod",
+    "typescript",
+    "typesafe"
+  ],
+  "author": "Banisetti Naveen <baninkumar@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/zrpc.git"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.13.4",
+    "@grpc/proto-loader": "^0.8.0",
+    "zod": "^4.1.6"
+  },
+  "devDependencies": {
+    "@zrpc/eslint-config": "workspace:*",
+    "@zrpc/typescript-config": "workspace:*",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  }
+}

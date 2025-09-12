@@ -1,0 +1,31 @@
+{
+  "name": "@zrpc/cli",
+  "version": "0.1.1",
+  "description": "CLI for zRPC",
+  "bin": {
+    "zrpc": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs --clean",
+    "dev": "pnpm build --watch",
+    "lint": "eslint src/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@zrpc/core": "workspace:*",
+    "chalk": "4",
+    "commander": "^14.0.1",
+    "tsx": "^4.20.5"
+  },
+  "devDependencies": {
+    "@zrpc/eslint-config": "workspace:*",
+    "@zrpc/typescript-config": "workspace:*",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  }
+}
