@@ -1,6 +1,6 @@
 {
-  "name": "@avyaya/zrpc/eslint-config",
-  "version": "0.0.2",
+  "name": "@avyaya/zrpc-eslint-config",
+  "version": "1.0.0",
   "type": "module",
   "private": true,
   "exports": {

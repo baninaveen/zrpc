@@ -1,4 +1,4 @@
-import { createZrpcClient } from '@avyaya/zrpc/core';
+import { createZrpcClient } from '@avyaya/zrpc-core';
 import {  appRouter, AppRouter } from './index'; 
 import { proto } from './generated';
 import { ZodError } from 'zod';

@@ -1,6 +1,6 @@
 {
-  "name": "@avyaya/zrpc/core",
-  "version": "0.1.2",
+  "name": "@avyaya/zrpc-core",
+  "version": "0.2.0",
   "private": false,
   "description": "A type-safe gRPC framework for Node.js, built with Zod.",
   "type": "module",
@@ -41,8 +41,8 @@
     "zod": "^4.1.6"
   },
   "devDependencies": {
-    "@avyaya/zrpc/eslint-config": "workspace:*",
-    "@avyaya/zrpc/typescript-config": "workspace:*",
+    "@avyaya/zrpc-eslint-config": "workspace:*",
+    "@avyaya/zrpc-typescript-config": "workspace:*",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"
   }
