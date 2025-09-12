@@ -1,6 +1,6 @@
 {
   "name": "@avyaya/zrpc/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "description": "A type-safe gRPC framework for Node.js, built with Zod.",
   "type": "module",
@@ -33,7 +33,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/zrpc.git"
+    "url": "https://github.com/baninaveen/zrpc.git"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.13.4",

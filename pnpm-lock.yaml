@@ -32,31 +32,31 @@ importers:
 
   apps/example-server:
     dependencies:
+      '@avyaya/zrpc/cli':
+        specifier: workspace:*
+        version: link:../../packages/cli
+      '@avyaya/zrpc/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@grpc/grpc-js':
         specifier: ^1.13.4
         version: 1.13.4
       '@grpc/proto-loader':
         specifier: ^0.8.0
         version: 0.8.0
-      'avyaya/zrpc/cli':
-        specifier: workspace:*
-        version: link:../../packages/cli
-      'avyaya/zrpc/core':
-        specifier: workspace:*
-        version: link:../../packages/core
       zod:
         specifier: ^4.1.6
         version: 4.1.8
     devDependencies:
+      '@avyaya/zrpc/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@avyaya/zrpc/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@types/node':
         specifier: ^24.3.1
         version: 24.3.1
-      'avyaya/zrpc/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      'avyaya/zrpc/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
       tsx:
         specifier: ^4.20.5
         version: 4.20.5
@@ -66,7 +66,7 @@ importers:
 
   packages/cli:
     dependencies:
-      'avyaya/zrpc/core':
+      '@avyaya/zrpc/core':
         specifier: workspace:*
         version: link:../core
       chalk:
@@ -79,10 +79,10 @@ importers:
         specifier: ^4.20.5
         version: 4.20.5
     devDependencies:
-      'avyaya/zrpc/eslint-config':
+      '@avyaya/zrpc/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      'avyaya/zrpc/typescript-config':
+      '@avyaya/zrpc/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       tsup:
@@ -100,17 +100,14 @@ importers:
       '@grpc/proto-loader':
         specifier: ^0.8.0
         version: 0.8.0
-      'avyaya/zrpc/core':
-        specifier: workspace:*
-        version: 'link:'
       zod:
         specifier: ^4.1.6
         version: 4.1.8
     devDependencies:
-      'avyaya/zrpc/eslint-config':
+      '@avyaya/zrpc/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      'avyaya/zrpc/typescript-config':
+      '@avyaya/zrpc/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       tsup:

@@ -1,5 +1,13 @@
 # avyaya/zrpc/cli
 
+## 0.1.2
+
+### Patch Changes
+
+- Initial release
+- Updated dependencies
+  - @avyaya/zrpc/core@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes
