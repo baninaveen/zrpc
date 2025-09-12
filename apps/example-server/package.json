@@ -11,16 +11,16 @@
     "generate": "zrpc generate --input ./src/index.ts --output ./src/generated.ts"
   },
   "dependencies": {
-    "@zrpc/core": "workspace:*",
-    "@zrpc/cli": "workspace:*",
+    "@avyaya/zrpc/core": "workspace:*",
+    "@avyaya/zrpc/cli": "workspace:*",
     "@grpc/grpc-js": "^1.13.4",
     "@grpc/proto-loader": "^0.8.0",
     "zod": "^4.1.6"
   },
   "devDependencies": {
     "@types/node": "^24.3.1",
-    "@zrpc/eslint-config": "workspace:*",
-    "@zrpc/typescript-config": "workspace:*",
+    "@avyaya/zrpc/eslint-config": "workspace:*",
+    "@avyaya/zrpc/typescript-config": "workspace:*",
     "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   }

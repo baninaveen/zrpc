@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk'
 import { pathToFileURL } from 'url';
-import { generateProtoFromRouter } from '@zrpc/core';
+import { generateProtoFromRouter } from '@avyaya/zrpc/core';
 
 const program = new Command();
 program

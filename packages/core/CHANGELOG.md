@@ -1,4 +1,4 @@
-# @zrpc/core
+# avyaya/zrpc/core
 
 ## 0.1.1
 
@@ -6,4 +6,4 @@
 
 - Initial Implmentation of the package
 - Updated dependencies
-  - @zrpc/core@0.1.1
+  - avyaya/zrpc/core@0.1.1

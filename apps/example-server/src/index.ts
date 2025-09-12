@@ -1,4 +1,4 @@
-import { createZrpcServer } from '@zrpc/core';
+import { createZrpcServer } from '@avyaya/zrpc/core';
 import { z } from 'zod';
 
 // 1. Define the schemas for our RPC methods

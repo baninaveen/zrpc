@@ -38,10 +38,10 @@ importers:
       '@grpc/proto-loader':
         specifier: ^0.8.0
         version: 0.8.0
-      '@zrpc/cli':
+      'avyaya/zrpc/cli':
         specifier: workspace:*
         version: link:../../packages/cli
-      '@zrpc/core':
+      'avyaya/zrpc/core':
         specifier: workspace:*
         version: link:../../packages/core
       zod:
@@ -51,10 +51,10 @@ importers:
       '@types/node':
         specifier: ^24.3.1
         version: 24.3.1
-      '@zrpc/eslint-config':
+      'avyaya/zrpc/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@zrpc/typescript-config':
+      'avyaya/zrpc/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       tsx:
@@ -66,7 +66,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@zrpc/core':
+      'avyaya/zrpc/core':
         specifier: workspace:*
         version: link:../core
       chalk:
@@ -79,10 +79,10 @@ importers:
         specifier: ^4.20.5
         version: 4.20.5
     devDependencies:
-      '@zrpc/eslint-config':
+      'avyaya/zrpc/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@zrpc/typescript-config':
+      'avyaya/zrpc/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       tsup:
@@ -100,17 +100,17 @@ importers:
       '@grpc/proto-loader':
         specifier: ^0.8.0
         version: 0.8.0
-      '@zrpc/core':
+      'avyaya/zrpc/core':
         specifier: workspace:*
         version: 'link:'
       zod:
         specifier: ^4.1.6
         version: 4.1.8
     devDependencies:
-      '@zrpc/eslint-config':
+      'avyaya/zrpc/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@zrpc/typescript-config':
+      'avyaya/zrpc/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       tsup:

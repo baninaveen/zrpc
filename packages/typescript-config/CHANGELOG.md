@@ -1,4 +1,4 @@
-# @zrpc/typescript-config
+# avyaya/zrpc/typescript-config
 
 ## 0.0.1
 

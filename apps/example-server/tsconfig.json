@@ -1,5 +1,5 @@
 {
-    "extends": "@zrpc/typescript-config/base.json",
+    "extends": "@avyaya/zrpc/typescript-config/base.json",
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist",

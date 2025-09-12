@@ -1,4 +1,4 @@
-# @zrpc/eslint-config
+# avyaya/zrpc/eslint-config
 
 ## 0.0.1
 
