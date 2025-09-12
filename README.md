@@ -1,135 +1,111 @@
-# Turborepo starter
+✨ zRPC: The Missing Type-Safe gRPC Framework for Node.js
+zRPC is a lightweight, developer-friendly framework that brings end-to-end type safety to gRPC in Node.js, without ever needing to write a .proto file. By leveraging the power of Zod for schema definition and validation, zRPC allows you to build robust, high-performance RPC APIs with a development experience similar to tRPC.
 
-This Turborepo starter is maintained by the Turborepo core team.
+## Key Features
+🚀 End-to-End Type Safety: Automatically infer client-side types directly from your server's router definition.
 
-## Using this example
+✍️ No .proto Files: Define your API contract once using Zod schemas in plain TypeScript.
 
-Run the following command:
+✅ Automatic Validation: Built-in server-side and client-side validation powered by Zod.
 
-```sh
-npx create-turbo@latest
+🤝 Developer-Friendly: A simple, minimal API for creating servers and clients with modern async/await.
+
+⚡ High Performance: Built on top of the native @grpc/grpc-js library, giving you all the performance benefits of gRPC and HTTP/2.
+
+## Installation
+Install the core library and the command-line tool.
+
+```bash
+pnpm add @avyaya/core @grpc/grpc-js zod
+pnpm add -D @avyaya/cli
+```
+## Quick Start
+Let's build a simple Greeter service in 3 steps.
+
+### 1. Define Your Router
+Create a central file to define your schemas and services. The router is the single source of truth for your API.
+
+```bash
+src/router.ts:
 ```
 
-## What's inside?
+TypeScript
 
-This Turborepo includes the following packages/apps:
+```typescript
+import { z } from 'zod';
 
-### Apps and Packages
+const schemas = {
+  SayHelloRequest: z.object({
+    name: z.string(),
+  }),
+  SayHelloReply: z.object({
+    message: z.string(),
+  }),
+};
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+const services = {
+  greeter: {
+    async sayHello(input: z.infer<typeof schemas.SayHelloRequest>) {
+      console.log(`Handling request for: ${input.name}`);
+      return {
+        message: `Hello, ${input.name}!`,
+      };
+    },
+  },
+};
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+export const appRouter = { schemas, services };
+export type AppRouter = typeof appRouter;
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 2. Create the Server
+Create a file to initialize and run your gRPC server.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+src/server.ts:
 ```
 
-### Develop
+```typescript
+import { createZrpcServer } from '@avyaya/core';
+import { appRouter } from './router';
 
-To develop all apps and packages, run the following command:
+const server = createZrpcServer(appRouter, '0.0.0.0:50051');
+server.start();
 
+console.log('🚀 Server running on port 50051');
 ```
-cd my-turborepo
+### 3. Create the Client
+Create a client to call your server. Notice how we only import the type of the AppRouter, not the runtime object, keeping the client fully decoupled.
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+```bash
+src/client.ts:
 ```
 
-### Remote Caching
+```typescript
+import { createZrpcClient } from '@avyaya/core';
+import type { AppRouter } from './router'; // Import ONLY the type
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+async function main() {
+  const client = createZrpcClient<AppRouter>({
+    // In a real app, you would generate and import the proto string
+    // For this quick start, we pass the router to generate it at runtime.
+    router: appRouter,
+    address: 'localhost:50051'
+  });
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+  const response = await client.greeter.sayHello({ name: 'World' });
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+  console.log('✅ Server Response:', response.message);
+  // Output: ✅ Server Response: Hello, World!
+}
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+main();
 ```
 
-## Useful Links
+## Contributing
+Contributions are welcome! Please see the CONTRIBUTING.md file for guidelines on how to set up the development environment, run tests, and submit a pull request.
 
-Learn more about the power of Turborepo:
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+It's been a long and productive week of building here in Barrackpore. Congratulations on creating a fantastic open-source project!
