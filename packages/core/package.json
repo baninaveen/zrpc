@@ -1,6 +1,6 @@
 {
   "name": "@avyaya/zrpc-core",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": false,
   "description": "A type-safe gRPC framework for Node.js, built with Zod.",
   "type": "module",
